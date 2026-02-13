@@ -1,3 +1,11 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+
+# אוסף את כל הקבצים "עמוד N.html" ומייצר index.html מעודכן
+pages="$(ls -1 "עמוד "*.html 2>/dev/null | sed -E "s/^עמוד ([0-9]+)\\.html$/\\1\\t&/" | sort -n | cut -f2- || true)"
+
+{
+cat <<'HTML'
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -20,15 +28,19 @@
       <div class="ruleline"></div>
       <p class="muted">בחר עמוד לצפייה:</p>
       <div class="row">
-        <div class="pill"><a href="עמוד%20עמוד.html">עמוד עמוד</a></div>
-        <div class="pill"><a href="עמוד%201.html.html">עמוד 1.html</a></div>
-        <div class="pill"><a href="עמוד%20עמוד.html">עמוד עמוד</a></div>
-        <div class="pill"><a href="עמוד%202.html.html">עמוד 2.html</a></div>
-        <div class="pill"><a href="עמוד%20עמוד.html">עמוד עמוד</a></div>
-        <div class="pill"><a href="עמוד%203.html.html">עמוד 3.html</a></div>
+HTML
+for f in $pages; do
+  n="$(echo "$f" | sed -E "s/^עמוד ([0-9]+)\\.html$/\\1/")"
+  # קישור URL-encoded למילה "עמוד " + מספר
+  echo "        <div class=\"pill\"><a href=\"עמוד%20${n}.html\">עמוד ${n}</a></div>"
+done
+cat <<'HTML'
         <div class="pill"><a href="rules.html">כללים (מתעדכן)</a></div>
       </div>
     </div>
   </div>
 </body>
 </html>
+HTML
+} > index.html
+echo "✅ index.html עודכן"

@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;800&family=Heebo:wght@400;600;800&display=swap");
+
+:root{
+  --a4w:210mm; --a4h:297mm;
+  --pad:14mm;
+  --blue:#0b5bd3;
+  --text:#111;
+  --muted:#555;
+  --red:#d11a2a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  direction:rtl;
+  background:#f2f4f7;
+  color:var(--text);
+  font-family:"David","David Libre","Heebo","Assistant",system-ui,-apple-system,"Segoe UI",Arial;
+}
+.top{max-width:1100px;margin:14px auto 0;padding:0 12px;color:var(--muted);font-size:13px}
+.shell{max-width:1100px;margin:10px auto 24px;padding:0 12px;display:flex;justify-content:center}
+.page{
+  width:var(--a4w);
+  min-height:var(--a4h);
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 18px 40px rgba(0,0,0,.14);
+  position:relative;
+  overflow:hidden;
+}
+.page-inner{padding:var(--pad)}
+.title{
+  margin:0;
+  color:var(--blue);
+  font-weight:700;
+  font-size:16pt;
+  line-height:1.1;
+  text-align:right;
+}
+.ruleline{height:2px;background:var(--blue);width:100%;margin-top:5mm}
+.page-no{
+  position:absolute;
+  left:10mm;
+  top:10mm;
+  width:11mm;
+  height:11mm;
+  border-radius:999px;
+  border:2px solid var(--red);
+  color:var(--red);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  background:#fff;
+}
+.questions{margin-top:10mm}
+.q{margin:10px 0;padding:10px 12px;border:1px solid rgba(0,0,0,.08);border-radius:14px}
+.q .head{font-weight:700;margin:0 0 6px}
+.q .text{margin:0;line-height:1.6;font-size:14px}
+.dot::before{content:"● ";color:#000;font-weight:900}
+.lines{margin-top:10px;border-top:1px solid rgba(0,0,0,.12);padding-top:8px}
+.line{height:9mm;border-bottom:1px solid rgba(0,0,0,.12)}
+a{color:var(--blue);text-decoration:none;font-weight:800}
+@page{ size:A4; margin:0; }
+@media print{
+  body{background:#fff}
+  .top{display:none}
+  .shell{margin:0;padding:0}
+  .page{box-shadow:none;border-radius:0}
+}
+
+.btnbar{margin-top:8mm; display:flex; gap:10px; flex-wrap:wrap}
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,.10);
+  background:#fff;
+  font-weight:800;
+}
+.btn.pdf{border-color: rgba(11,91,211,.25)}
+@media print{ .btnbar{display:none !important} }
+
+.graphbox{
+  width:100%;
+  height:90mm;
+  margin-top:8mm;
+  border:1px solid rgba(0,0,0,.15);
+}
+
+@media print{
+  .graphbox{
+    break-inside: avoid;
+  }
+}

@@ -11,7 +11,7 @@ const pages = fs.readdirSync(root)
   .sort((a,b)=> Number(a.match(/\d+/)[0]) - Number(b.match(/\d+/)[0]));
 
 if (pages.length === 0) {
-  console.log("❌ לא נמצאו קבצי עמוד *.html");
+  console.log("❌ לא נמצאו קבצי עמוד");
   process.exit(2);
 }
 
@@ -21,7 +21,13 @@ const page = await browser.newPage();
 for (const file of pages) {
   const num = file.match(/\d+/)[0];
   const fileUrl = "file://" + path.join(root, file);
+
   await page.goto(fileUrl, { waitUntil: "networkidle" });
+
+  // המתנה ל-MathJax
+  await page.waitForFunction(() => {
+    return window.MathJax && window.MathJax.typesetPromise;
+  }, { timeout: 10000 }).catch(() => {});
 
   const pdfPath = path.join(outDir, `עמוד ${num}.pdf`);
   await page.pdf({
@@ -33,4 +39,5 @@ for (const file of pages) {
 
   console.log(`✅ built: ${pdfPath}`);
 }
+
 await browser.close();

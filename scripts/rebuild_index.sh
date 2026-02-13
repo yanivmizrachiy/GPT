@@ -1,11 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
 
-# אוסף את כל הקבצים "עמוד N.html" ומייצר index.html מעודכן
-pages="$(ls -1 "עמוד "*.html 2>/dev/null | sed -E "s/^עמוד ([0-9]+)\\.html$/\\1\\t&/" | sort -n | cut -f2- || true)"
-
-{
-cat <<'HTML'
+cat > index.html <<'HTML'
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
@@ -16,25 +12,19 @@ cat <<'HTML'
   <style>
     .menu{max-width:900px;margin:18px auto;padding:0 12px}
     .card{background:#fff;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.08);padding:16px}
-    .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    a{color:var(--blue);text-decoration:none;font-weight:800}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
     .pill{border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:10px 14px;background:#fff}
-    .muted{color:var(--muted);margin:10px 0 0}
   </style>
 </head>
 <body>
   <div class="menu">
     <div class="card">
-      <h1 class="title" style="margin:0">GPT</h1>
+      <h1 class="title" style="margin:0 0 8px">GPT</h1>
       <div class="ruleline"></div>
-      <p class="muted">בחר עמוד לצפייה:</p>
+      <p style="color:var(--muted);margin:10px 0 14px">כרגע פעיל: עמוד 1 בלבד (נעול).</p>
       <div class="row">
-HTML
-for f in $pages; do
-  n="$(echo "$f" | sed -E "s/^עמוד ([0-9]+)\\.html$/\\1/")"
-  # קישור URL-encoded למילה "עמוד " + מספר
-  echo "        <div class=\"pill\"><a href=\"עמוד%20${n}.html\">עמוד ${n}</a></div>"
-done
-cat <<'HTML'
+        <div class="pill"><a href="עמוד%201.html">עמוד 1</a></div>
         <div class="pill"><a href="rules.html">כללים (מתעדכן)</a></div>
       </div>
     </div>
@@ -42,5 +32,4 @@ cat <<'HTML'
 </body>
 </html>
 HTML
-} > index.html
-echo "✅ index.html עודכן"
+echo "✅ index.html (page1-only) updated"

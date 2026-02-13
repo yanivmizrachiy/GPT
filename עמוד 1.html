@@ -3,38 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GPT — עמוד 1 — פרופורציה</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=David+Libre:wght@400;700&family=Heebo:wght@400;700&family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+  <title>GPT — עמוד 1</title>
   <link rel="stylesheet" href="assets/style.css" />
-  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]]},svg:{fontCache:"global"}};</script>
+  <script>
+    window.MathJax = { tex:{ inlineMath:[["\\\\(","\\\\)"],["$","$"]] }, svg:{ fontCache:"global" } };
+  </script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" /><script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
 </head>
 <body>
-  <div class="top">GPT • דף מתמטיקה חי (מסונכרן ל-GitHub Pages)</div>
   <div class="shell">
     <section class="page">
       <div class="page-no">1</div>
       <div class="page-inner">
-        <h1 class="title">פרופורציה</h1>
-        <div class="ruleline"></div>
-
-        <div class="questions">
-          <div class="q">
-            <p class="head dot">שאלה 1</p>
-            <p class="text">פתרו: \(\frac{3}{5}=\frac{x}{20}\). מצאו את \(x\) והסבירו.</p>
-            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
-          </div>
-
-          <div class="q">
-            <p class="head dot">שאלה 2</p>
-            <p class="text">בכיתה יש יחס בנים:בנות של \(2:3\). אם יש 18 תלמידים, כמה בנים וכמה בנות?</p>
-            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
-          </div>
+        <div class="header">
+          <h1 class="title">פרופורציה</h1>
+          <div class="subtitle">פרופורציה – יחסים שווים</div>
         </div>
 
+        <div class="ruleline"></div>
+
+        <div class="btnbar">
+          <a class="btn pdf" href="pdf/עמוד%201.pdf" download>הורדת PDF</a>
+        </div>
+
+        <div class="questions">
+
+          <div class="q">
+            <p class="head dot">מה זה פרופורציה?</p>
+            <p class="text">פרופורציה היא שוויון בין שני יחסים. אם שני שברים שווים — זו פרופורציה.</p>
+            <p class="text">דוגמה: \\(\\frac{2}{3}=\\frac{4}{6}\\) כי \\(2\\cdot6=3\\cdot4\\).</p>
+          </div>
+
+          <div class="q">
+            <p class="head dot">דוגמה פתורה (כפל בהצלבה)</p>
+            <p class="text">פתרו: \\(\\frac{3}{5}=\\frac{x}{20}\\)</p>
+            <p class="text">כפל בהצלבה: \\(3\\cdot20=5x\\) ולכן \\(60=5x\\) ואז \\(x=12\\).</p>
+            <div class="lines"><div class="line"></div><div class="line"></div></div>
+          </div>
+
+          <div class="q">
+            <p class="head dot">תרגול (מצאו את X או Y)</p>
+            <p class="text">פתרו בעזרת כפל בהצלבה. כתבו את כל השלבים.</p>
+            <p class="text">1) \\(\\frac{2}{3}=\\frac{4}{x}\\) &nbsp;&nbsp; 2) \\(\\frac{4}{7}=\\frac{x}{21}\\) &nbsp;&nbsp; 3) \\(\\frac{6}{8}=\\frac{y}{12}\\)</p>
+            <p class="text">4) \\(\\frac{9}{4}=\\frac{27}{x}\\) &nbsp;&nbsp; 5) \\(\\frac{5}{2}=\\frac{15}{y}\\)</p>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+          </div>
+
+          <div class="q">
+            <p class="head dot">דוגמה פתורה (בעיה מילולית בפרופורציה)</p>
+            <p class="text">שלושה ספרים עולים 12 ₪. כמה יעלו 7 ספרים?</p>
+            <p class="text">פרופורציה: \\(\\frac{3}{12}=\\frac{7}{y}\\) ואז \\(3y=84\\) ולכן \\(y=28\\).</p>
+            <div class="lines"><div class="line"></div><div class="line"></div></div>
+          </div>
+
+          <div class="q">
+            <p class="head dot">תרגול (בעיות מילוליות בפרופורציה)</p>
+            <p class="text">פתרו בעזרת פרופורציה בלבד (כפל בהצלבה).</p>
+            <p class="text">1) 4 מחברות עולות 20 ₪. כמה יעלו 9 מחברות? (סמנו את הנעלם כ-\\(x\\))</p>
+            <p class="text">2) 6 כרטיסים עולים 48 ₪. כמה יעלו 15 כרטיסים? (סמנו את הנעלם כ-\\(y\\))</p>
+            <p class="text">3) 8 תפוחים עולים 24 ₪. כמה יעלו 5 תפוחים? (סמנו את הנעלם כ-\\(x\\))</p>
+            <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+          </div>
+
+        </div>
       </div>
     </section>
   </div>

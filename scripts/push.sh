@@ -1,59 +1,62 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
+
 msg="${1:-update}"
+what="${2:-}"
+next="${3:-}"
 
+# --- auto journal entry (unless user already wrote one just now) ---
+./scripts/note.sh "$msg" "$what" "$next" >/dev/null 2>&1 || true
+
+# --- normalize rules (dedupe) ---
+python scripts/rules_normalize.py >/dev/null 2>&1 || true
+
+# --- checks + build rules.html ---
+./scripts/rules_check.sh
+./scripts/build_rules.sh
+
+# --- optionally rebuild index if script exists ---
+[ -x scripts/rebuild_index.sh ] && ./scripts/rebuild_index.sh >/dev/null 2>&1 || true
+
+git add -A
+if git diff --cached --quiet; then
+  echo "ℹ️ אין שינויים ל-commit"
+  exit 0
+fi
+
+git commit -m "$msg" >/dev/null 2>&1 || true
+
+# safe push (autostash + rebase + retry) — minimal, no $1 unbound
 autostash(){
-  if ! git diff --quiet || ! git diff --cached --quiet; then
-    git stash push -u -m "autostash: before sync" >/dev/null
-    echo "1"
-  else
-    echo "0"
+  if git diff --quiet && git diff --cached --quiet; then
+    echo ""
+    return 0
   fi
+  git stash push -u -m "autostash: before rebase" >/dev/null 2>&1 || true
+  echo "1"
 }
-
 unstash(){
-  if [ "${1:-0}" = "1" ]; then
-    git stash pop >/dev/null || true
-  fi
+  [ "${1:-}" = "1" ] && git stash pop >/dev/null 2>&1 || true
 }
 
 try_push(){
-  # checks + build rules
-  ./scripts/rules_check.sh
-  ./scripts/build_rules.sh
-
-  git add -A
-  if git diff --cached --quiet; then
-    echo "ℹ️ אין שינויים ל-commit"
-    return 0
-  fi
-
-  git commit -m "$msg" >/dev/null || true
-
-  # rebase again right before push (handles Actions commits)
-  git fetch origin >/dev/null
-  git pull --rebase origin main >/dev/null
-
-  git push origin main
+  git fetch origin >/dev/null 2>&1 || true
+  git pull --rebase origin main >/dev/null 2>&1 || true
+  git push origin main >/dev/null 2>&1
 }
 
 STASHED="$(autostash)"
-
-# initial sync
-git fetch origin >/dev/null
-git pull --rebase origin main >/dev/null
-
+git fetch origin >/dev/null 2>&1 || true
+git pull --rebase origin main >/dev/null 2>&1 || true
 unstash "$STASHED"
 
-# push with 2 attempts
 if try_push; then
   echo "✅ pushed safely"
   exit 0
 fi
 
 echo "⚠️ push failed once, retrying after rebase..."
-git fetch origin >/dev/null
-git pull --rebase origin main >/dev/null
+git fetch origin >/dev/null 2>&1 || true
+git pull --rebase origin main >/dev/null 2>&1 || true
 try_push
-
 echo "✅ pushed safely (retry)"

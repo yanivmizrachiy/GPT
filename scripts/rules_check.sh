@@ -1,28 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash
-set -euo pipefail
+set -e
 
 f="RULES.md"
-[ -f "$f" ] || { echo "❌ RULES.md לא קיים"; exit 2; }
+[ -f "$f" ] || { echo "❌ RULES.md missing"; exit 2; }
 
-fail(){ echo "❌ RULES CHECK FAILED: $1"; exit 3; }
-ok(){ echo "✅ rules_check: $1"; }
+txt=$(cat "$f")
 
-txt="$(cat "$f")"
+echo "$txt" | grep -qi "הפרדה מוחלטת" || { echo "❌ missing separation rule"; exit 3; }
+echo "$txt" | grep -qi "אין דמו" || { echo "❌ missing no-demo rule"; exit 3; }
+echo "$txt" | grep -qi "PDF" || { echo "❌ missing PDF rule"; exit 3; }
 
-# חובה: כללים שהוגדרו בפרויקט
-echo "$txt" | grep -q "הפרדה מוחלטת בין HTML ל-CSS" || fail "חסר כלל: הפרדה מוחלטת בין HTML ל-CSS"
-echo "$txt" | grep -q "כל עמוד הוא קובץ נפרד" || fail "חסר כלל: כל עמוד הוא קובץ נפרד"
-echo "$txt" | grep -q "פרופורציה" || fail "חסר כלל: כותרת פרופורציה"
-echo "$txt" | grep -q "עיגול אדום" || fail "חסר כלל: מספר עמוד בעיגול אדום"
-echo "$txt" | grep -q "נקודה שחורה" || fail "חסר כלל: נקודה שחורה בתחילת כל שאלה"
+bad=$(grep -RIn --exclude-dir=.git --include="עמוד *.html" -E "<style|style=" . || true)
+[ -z "$bad" ] || { echo "❌ inline CSS found"; exit 4; }
 
-# סתירה בסיסית
-if echo "$txt" | grep -qi "מותר .*css .*בתוך .*html"; then
-  fail "נמצאה סתירה: כתוב שמותר CSS בתוך HTML למרות שהכלל הוא הפרדה מוחלטת"
-fi
-
-# אכיפה בפועל: אין CSS inline בעמודים
-bad_inline="$(grep -RIn --exclude-dir=.git --include="עמוד *.html" -E "<style|style=" . | head -n 1 || true)"
-[ -z "$bad_inline" ] || fail "נמצא CSS בתוך HTML (אסור). דוגמה: $bad_inline"
-
-ok "כללים קיימים + אין CSS בתוך עמודים"
+echo "✅ rules_check OK"

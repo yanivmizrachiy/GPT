@@ -44,6 +44,9 @@ for (const file of pages) {
     process.exit(3);
   }
   console.log(`✅ built: ${pdfPath}`);
+  const alias = path.join(outDir, `page-${num}.pdf`);
+  fs.copyFileSync(pdfPath, alias);
+  console.log(`✅ alias: ${alias}`);
 }
 
 await browser.close();

@@ -92,3 +92,85 @@ a{color:var(--blue);text-decoration:none;font-weight:800}
     break-inside: avoid;
   }
 }
+
+/* PRO_A4_POLISH_V1 */
+:root{
+  --a4-pad: 10mm;
+  --blk: #111;
+}
+
+@page{ size: A4; margin: 0; }
+
+html,body{ height:100%; }
+body{
+  color: var(--blk);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* page geometry */
+.shell{ padding:0; }
+.page{
+  width:210mm;
+  min-height:297mm;
+  margin:0 auto;
+  background:#fff;
+  position:relative;
+}
+.page-inner{
+  padding: var(--a4-pad);
+  box-sizing:border-box;
+}
+
+/* header + hierarchy */
+.title{
+  line-height:1.15;
+  margin:0;
+}
+.lead{
+  margin-top:6mm;
+  display:flex;
+  gap:10mm;
+  align-items:stretch;
+}
+.lead .mini{
+  flex:1;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:12px;
+  padding:8px 10px;
+}
+.lead .mini .k{ font-weight:800; margin-bottom:2px; }
+.lead .mini .v{ line-height:1.45; }
+
+/* questions */
+.questions{ margin-top:6mm; }
+.q{
+  margin-top:6mm;
+  padding-top:0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.q .head{ margin:0 0 2mm; font-weight:800; }
+.q .text{ margin:0 0 2mm; line-height:1.5; }
+.lst{ margin:0 0 3mm; padding:0 20px 0 0; }
+.lst li{ margin:0 0 2mm; line-height:1.5; }
+
+/* answer lines (use page space efficiently) */
+.lines{ margin-top:3mm; }
+.line{
+  height:0;
+  border-bottom:1px solid rgba(0,0,0,.35);
+  margin:6mm 0 0;
+}
+.lines-2 .line{ margin-top:8mm; }
+.lines-5 .line{ margin-top:7mm; }
+.lines-6 .line{ margin-top:6mm; }
+.lines-7 .line{ margin-top:5.7mm; }
+
+/* hide UI on print */
+@media print{
+  .btnbar{ display:none !important; }
+  .top{ display:none !important; }
+  .shell{ padding:0 !important; }
+  a{ text-decoration:none; color:inherit; }
+}

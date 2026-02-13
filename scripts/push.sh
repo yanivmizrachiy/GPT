@@ -1,7 +1,8 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
+
 msg="${1:-update: pages + rules}"
-# לפני הכל: בודק סתירות + בונה rules.html (נאכף גם ב-pre-commit)
+
 ./scripts/rules_check.sh
 ./scripts/build_rules.sh
 

@@ -1,7 +1,11 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
-in="RULES.md"; out="rules.html"
+
+in="RULES.md"
+out="rules.html"
+
 escape(){ sed -e "s/&/\\&amp;/g" -e "s/</\\&lt;/g" -e "s/>/\\&gt;/g"; }
+
 {
   echo "<!doctype html><html lang=\"he\" dir=\"rtl\"><head><meta charset=\"utf-8\"/>"
   echo "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"/>"

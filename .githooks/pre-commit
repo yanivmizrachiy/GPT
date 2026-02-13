@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+./scripts/rules_check.sh
+./scripts/build_rules.sh
+git add rules.html >/dev/null 2>&1 || true

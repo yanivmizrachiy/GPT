@@ -3,26 +3,20 @@ name: Build PDFs (A4) and Commit
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - "עמוד *.html"
-      - "assets/**"
-      - "scripts/pdf_build.mjs"
-      - ".github/workflows/build-pdf.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
-concurrency:
-  group: build-pdf
-  cancel-in-progress: true
-
 jobs:
-  pdf:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
 
@@ -31,6 +25,9 @@ jobs:
           if [ ! -f package.json ]; then npm init -y; fi
           npm i -D playwright
           npx playwright install --with-deps chromium
+
+      - name: Clean pdf output
+        run: rm -rf pdf || true
 
       - name: Build PDFs
         run: node scripts/pdf_build.mjs

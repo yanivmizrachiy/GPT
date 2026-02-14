@@ -117,3 +117,8 @@
 - דרישה/שינוי: feat: page1 add JSXGraph proportion demo (A4 print-safe, no inline CSS)
 - בוצע בפועל: נוסף לעמוד 1 ייצוג גרפי מקצועי עם JSXGraph: תיבה גרפית A4 (CSS בלבד), קבצי JS נפרדים assets/graphs.js + assets/page1.js, והזרקה בטוחה ל-HTML בלי perl/regex שביר. אין CSS בתוך HTML.
 - המשך מתוכנן: הבא: אתה שולח צילום מסך של RAW PDF → אני מכוונן מ״מ (גובה תיבה/ריווחים/שבירות) עד מושלם.
+
+### 2026-02-14 20:53
+- דרישה/שינוי: fix: stabilize rules scripts after broken if
+- בוצע בפועל: שוחזרו scripts/rules_check.sh ו-scripts/build_rules.sh נקיים; כללים.md מקור אמת; RULES.md מראה; rules.html נבנה מחדש.
+- המשך מתוכנן: הבא: להפוך את כללים למסמך על מסודר לפרטי פרטים (סעיפים קבועים + טבלת בוצע/לא בוצע) ולהקשיח בדיקות.

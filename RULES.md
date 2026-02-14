@@ -107,3 +107,8 @@
 - דרישה/שינוי: fix: document RAW as PDF source-of-truth (unicode safe)
 - בוצע בפועל: עודכן RULES עם סעיף PDF אמיתי ללא תווי escape שבורים.
 - המשך מתוכנן: הבא: ליטוש PDF טיפוגרפי מושלם לאחר צילום מסך.
+
+### 2026-02-14 19:10
+- דרישה/שינוי: fix: unblock rebase + safe RAW PDF href replacement
+- בוצע בפועל: נפתרה חסימת rebase ע"י autostash. עודכן עמוד 1: כפתור PDF מפנה ל-RAW בצורה יציבה + הוזרק print.js בלי כפילויות.
+- המשך מתוכנן: הבא: להוסיף גרף JSXGraph בעמוד 1 בצורה שמודפסת מושלם ב-A4.

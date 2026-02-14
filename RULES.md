@@ -128,3 +128,8 @@
 - דרישה/שינוי: קיבוע ביצועים — עדכון חבילות שבועי בלבד (weekly_update)
 - בוצע בפועל: נוצר scripts/weekly_update.sh + קיצור Termux:Widget 🧰 WEEKLY_UPDATE_GPT + alias weekly ב-.bashrc
 - המשך מתוכנן: לאכוף ב-push.sh "אין Push בלי רישום יומן היום" (חסימה קשיחה)
+
+### 2026-02-14 21:30
+- דרישה/שינוי: upgrade: governance+audit+snapshot (hard block)
+- בוצע בפועל: נוסף prepush שמכריח יומן היום + audit + snapshot. push.sh מחייב זאת לפני דחיפה. נוצר state.json.
+- המשך מתוכנן: הבא: שדרוג עמוד 1 — גרף JSXGraph מודפס מושלם + מיקרו-ריווחים לפי צילום PDF.

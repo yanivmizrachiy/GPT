@@ -1,5 +1,10 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
+# --- PREPUSH (hard governance) ---
+if [ -x "./scripts/prepush.sh" ]; then
+  ./scripts/prepush.sh
+fi
+
 
 msg="${1:-update}"
 what="${2:-}"

@@ -124,12 +124,12 @@
 - בוצע בפועל: נוצר assets/print.js, עמוד 1 טוען אותו פעם אחת, כפתור הדפסה עובד דרך data-print
 - המשך מתוכנן: צילום מסך PDF → כיוונון מ"מ (ריווחים/שבירות) + ליטוש גרף JSXGraph להדפסה
 
-### 2026-02-14 21:05
-- דרישה/שינוי: fix: journal update (unicode-safe, no f-string crash)
-- בוצע בפועל: עודכן יומן בכללים.md בצורה חסינה ללא f-string. שיקוף מלא ל-RULES.md.
-- המשך מתוכנן: הבא: בדיקת PDF טיפוגרפית מדויקת לפי צילום מסך.
+### 2026-02-14
+- דרישה/שינוי: קיבוע ביצועים — עדכון חבילות שבועי בלבד (weekly_update)
+- בוצע בפועל: נוצר scripts/weekly_update.sh + קיצור Termux:Widget 🧰 WEEKLY_UPDATE_GPT + alias weekly ב-.bashrc
+- המשך מתוכנן: לאכוף ב-push.sh "אין Push בלי רישום יומן היום" (חסימה קשיחה)
 
-### 2026-02-14 21:22
-- דרישה/שינוי: chore: add Termux health+pdf helpers
-- בוצע בפועל: נוספו scripts/health.sh + scripts/get_pdf.sh (newline-safe). נבדקו בפועל: health OK + הורדת PDF ל-Download הצליחה. קיצורי Widget עודכנו.
-- המשך מתוכנן: הבא: לקבע ביצועים—להוסיף weekly_update.sh (עדכון חבילות פעם בשבוע בלבד) + להוסיף health מהיר בלי רשת אם רוצים.
+### 2026-02-14 21:26
+- דרישה/שינוי: chore: weekly_update documented safely
+- בוצע בפועל: יומן עודכן בצורה חסינה (ללא f-string). weekly_update מתועד רשמית בכללים.
+- המשך מתוכנן: הבא: אכיפה קשיחה ב-push.sh — חסימת Push אם אין רישום יומן של היום.

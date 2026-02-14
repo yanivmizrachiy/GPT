@@ -128,8 +128,3 @@
 - דרישה/שינוי: קיבוע ביצועים — עדכון חבילות שבועי בלבד (weekly_update)
 - בוצע בפועל: נוצר scripts/weekly_update.sh + קיצור Termux:Widget 🧰 WEEKLY_UPDATE_GPT + alias weekly ב-.bashrc
 - המשך מתוכנן: לאכוף ב-push.sh "אין Push בלי רישום יומן היום" (חסימה קשיחה)
-
-### 2026-02-14 21:26
-- דרישה/שינוי: chore: weekly_update documented safely
-- בוצע בפועל: יומן עודכן בצורה חסינה (ללא f-string). weekly_update מתועד רשמית בכללים.
-- המשך מתוכנן: הבא: אכיפה קשיחה ב-push.sh — חסימת Push אם אין רישום יומן של היום.

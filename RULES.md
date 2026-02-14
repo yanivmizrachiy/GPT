@@ -157,6 +157,9 @@
 - scripts/qa_snapshot.sh
 - scripts/qa_preview.sh
 - scripts/qa_pdf_check.sh
+
+- scripts/qa_overlay_mm.sh
+- scripts/qa_pack.sh
 ## PRINT RULES
 - אין inline CSS בתוך HTML (style= / <style>)
 - חובה @media print בקבצי CSS
@@ -191,7 +194,7 @@
 - 4) שדרוג עמוד 1: היררכיה טיפוגרפית פרימיום + מניעת ״יתומים״ + שטחי תשובה מדויקים
 - 5) הרחבה עתידית: רק אחרי שהעמוד הראשון מושלם ומאושר
 
-### 2026-02-14 23:13
-- דרישה/שינוי: upgrade: QA print v2 (pdf checks + snapshot + png preview) + documented in rules
-- בוצע בפועל: נוסף QA אמיתי: qa_pdf_check (A4/גודל/תוכן), qa_snapshot (hashes/state), qa_preview (PNG). qa_print שודרג להריץ אותם. עודכן כללים.md ונבנה rules.html.
-- המשך מתוכנן: הבא: שלח צילום מסך של Download/page-1.pdf כדי לכוון מ״מ עד הדפסה מושלמת.
+### 2026-02-14 23:54
+- דרישה/שינוי: upgrade: extreme A4 mm tune v2 (print typography + spacing) + QA overlay pack
+- בוצע בפועל: בוצע כיוונון מ״מ קיצוני ב-assets/style.css (PRINT_TUNE_MM_V2) + עודכן יומן בכללים.md ונבנו/נבדקו QA overlay+pack לפי הכללים.
+- המשך מתוכנן: הבא: שלח צילום overlay-*.png החדש (או QA_pack_*.zip) → כיוונון אחרון 1–2 מ״מ עד 100%.

@@ -269,3 +269,49 @@ p{ margin: 0 0 3.2mm; }
     margin: 16px auto;
   }
 }
+
+/* PRINT_TUNE_MM_V2 */
+@media print {
+  :root{
+    --pt-top: 16mm;
+    --pt-bottom: 12mm;
+    --pt-sides: 12mm;
+
+    --pt-h1-size: 20pt;
+    --pt-h1-gap: 3.2mm;
+
+    --pt-line: 1.35;
+    --pt-block-gap: 4.5mm;
+  }
+
+  .sheet, .page, .a4, .print-page, .print-sheet{
+    padding-top: var(--pt-top) !important;
+    padding-bottom: var(--pt-bottom) !important;
+    padding-left: var(--pt-sides) !important;
+    padding-right: var(--pt-sides) !important;
+  }
+
+  h1, .title, .page-title{
+    font-size: var(--pt-h1-size) !important;
+    line-height: 1.05 !important;
+    margin-top: 0 !important;
+    margin-bottom: var(--pt-h1-gap) !important;
+    font-weight: 800 !important;
+    letter-spacing: .2px !important;
+  }
+
+  body, p, li, .q, .box, .section, .content{
+    line-height: var(--pt-line) !important;
+  }
+
+  .q, .box, .section, .block{
+    margin-bottom: var(--pt-block-gap) !important;
+  }
+
+  p, li { orphans: 2; widows: 2; }
+
+  .hr, hr, .divider{
+    margin-top: 2.5mm !important;
+    margin-bottom: 4mm !important;
+  }
+}

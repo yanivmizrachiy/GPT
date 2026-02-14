@@ -191,3 +191,8 @@
 - דרישה/שינוי: chore: enforce qa_print in rules contract (required script)
 - בוצע בפועל: אומת scripts/qa_print.sh ונוסף לחוזה REQUIRED SCRIPTS בכללים.md (ושוקף ל-RULES.md). נבנה rules.html ו-rules_check עבר.
 - המשך מתוכנן: הבא: להריץ qa ולשלוח צילום מסך של Download/page-1.pdf לכיוונון מ״מ A4.
+
+### 2026-02-14 23:06
+- דרישה/שינוי: chore: document QA run (dev_mode + qa_print) in rules
+- בוצע בפועל: תועד/אומת ביומן: ריצת QA מלאה (dev_mode + qa_print) + RAW 200 + הורדה ל-Download. נבנה rules.html.
+- המשך מתוכנן: הבא: אתה שולח צילום מסך של Download/page-1.pdf -> אני מכוונן מ״מ A4 עד מושלם.

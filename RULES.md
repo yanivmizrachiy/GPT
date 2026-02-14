@@ -153,6 +153,10 @@
 - scripts/get_pdf.sh
 
 - scripts/qa_print.sh
+
+- scripts/qa_snapshot.sh
+- scripts/qa_preview.sh
+- scripts/qa_pdf_check.sh
 ## PRINT RULES
 - אין inline CSS בתוך HTML (style= / <style>)
 - חובה @media print בקבצי CSS
@@ -187,12 +191,7 @@
 - 4) שדרוג עמוד 1: היררכיה טיפוגרפית פרימיום + מניעת ״יתומים״ + שטחי תשובה מדויקים
 - 5) הרחבה עתידית: רק אחרי שהעמוד הראשון מושלם ומאושר
 
-### 2026-02-14 23:01
-- דרישה/שינוי: chore: enforce qa_print in rules contract (required script)
-- בוצע בפועל: אומת scripts/qa_print.sh ונוסף לחוזה REQUIRED SCRIPTS בכללים.md (ושוקף ל-RULES.md). נבנה rules.html ו-rules_check עבר.
-- המשך מתוכנן: הבא: להריץ qa ולשלוח צילום מסך של Download/page-1.pdf לכיוונון מ״מ A4.
-
-### 2026-02-14 23:06
-- דרישה/שינוי: chore: document QA run (dev_mode + qa_print) in rules
-- בוצע בפועל: תועד/אומת ביומן: ריצת QA מלאה (dev_mode + qa_print) + RAW 200 + הורדה ל-Download. נבנה rules.html.
-- המשך מתוכנן: הבא: אתה שולח צילום מסך של Download/page-1.pdf -> אני מכוונן מ״מ A4 עד מושלם.
+### 2026-02-14 23:13
+- דרישה/שינוי: upgrade: QA print v2 (pdf checks + snapshot + png preview) + documented in rules
+- בוצע בפועל: נוסף QA אמיתי: qa_pdf_check (A4/גודל/תוכן), qa_snapshot (hashes/state), qa_preview (PNG). qa_print שודרג להריץ אותם. עודכן כללים.md ונבנה rules.html.
+- המשך מתוכנן: הבא: שלח צילום מסך של Download/page-1.pdf כדי לכוון מ״מ עד הדפסה מושלמת.

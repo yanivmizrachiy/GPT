@@ -21,3 +21,14 @@ fi
 
 echo
 echo "✅ QA PRINT DONE"
+
+echo
+echo "== QA: SNAPSHOT (state.json) =="
+./scripts/qa_snapshot.sh || true
+echo
+echo "== QA: PDF CHECKS =="
+./scripts/qa_pdf_check.sh "$HOME/storage/shared/Download/page-1.pdf" || exit 9
+echo
+echo "== QA: PREVIEW PNG (optional) =="
+./scripts/qa_preview.sh "$HOME/storage/shared/Download/page-1.pdf" || true
+

@@ -138,4 +138,34 @@
 - דרישה/שינוי: אימות קשיחות — push.sh מחייב prepush + אין Push בלי רישום יומן היום
 - בוצע בפועל: אומת/תוקן שהקריאה ל-scripts/prepush.sh קיימת פעם אחת ב-push.sh. תועד שהשגיאות else/fi היו שבירת הדבקה בטרמינל (לא תכנון).
 - המשך מתוכנן: להקשיח audit+snapshot (אם נרצה), ואז לשדרג את עמוד 1: גרף JSXGraph פרינט-סייפ + מיקרו-ריווחים לפי צילום PDF.
+
+## REQUIRED FILES
+- עמוד 1.html
+- assets/style.css
+- assets/print.js
+- rules.html
+- RULES.md
+
+## REQUIRED SCRIPTS
+- scripts/push.sh
+- scripts/prepush.sh
+- scripts/rules_check.sh
+- scripts/build_rules.sh
+- scripts/parse_rules.py
+- scripts/print_guard.sh
+- scripts/dev_mode.sh
+- scripts/health.sh
+- scripts/get_pdf.sh
+
+## PRINT RULES
+- אין inline CSS בתוך HTML (style= / &lt;style&gt;)
+- חובה @media print בקבצי CSS
+- עמוד 1 חייב להכיל container להדפסה (.page או .sheet)
+- PDF הורדה מפנה ל-RAW כמקור אמת
+
+## GOVERNANCE
+- אין Push בלי רישום יומן היום
+- כל שינוי מתועד ביומן העבודה עם תאריך, מה בוצע ומה הלאה
+- סנכרון = מחיקת מיותר/כפילויות/סתירות
+- page1-only: אין עמודים 2-4
 </pre></div></div></body></html>

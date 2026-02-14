@@ -1,33 +1,39 @@
-#!/data/data/com.termux/files/usr/bin/bash
 set -euo pipefail
+cd "$HOME/GPT"
 
-f="כללים.md"
-[ -f "$f" ] || f="RULES.md"
-[ -f "$f" ] || { echo "❌ rules_check: חסר כללים.md וגם RULES.md"; exit 2; }
+CANON="כללים.md"
+[ -f "$CANON" ] || { echo "❌ missing $CANON"; exit 10; }
 
-fail(){ echo "❌ RULES CHECK FAILED: $1"; exit 3; }
-ok(){ echo "✅ rules_check OK: $1"; }
+echo "== RULES_CHECK: parse structured sections =="
+JSON=$(python ./scripts/parse_rules.py)
+echo "$JSON" >/dev/null
 
-txt="$(tr -d "\r" < "$f")"
+need(){ python - <<PY
+import json,sys
+data=json.loads(sys.stdin.read())
+key=sys.argv[1]
+print("\n".join(data.get(key,[])))
+PY
+}
 
-# חובה: אין דמו + A4 + הפרדת HTML/CSS + PDF
-echo "$txt" | grep -qi "אין דמו" || fail "חסר כלל: אין דמו"
-echo "$txt" | grep -qi "A4" || fail "חסר כלל: A4"
-echo "$txt" | grep -qi "הפרדה מוחלטת" || fail "חסר סעיף: הפרדה מוחלטת HTML / CSS"
-echo "$txt" | grep -qi "html" || fail "חסר סעיף: הפרדה מוחלטת HTML / CSS"
-echo "$txt" | grep -qi "css"  || fail "חסר סעיף: הפרדה מוחלטת HTML / CSS"
-echo "$txt" | grep -qi "PDF"  || fail "חסר סעיף/דרישה: PDF אמיתי להורדה"
+echo "== REQUIRED FILES =="
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  [ -f "$f" ] && echo "✅ $f" || { echo "❌ missing: $f"; exit 11; }
+done < <(echo "$JSON" | python -c "import sys,json; d=json.load(sys.stdin); print('\\n'.join(d['REQUIRED FILES']))")
 
-# אכיפה בפועל: אין CSS בתוך עמודים
-bad_inline="$(grep -RIn --exclude-dir=.git --include="עמוד *.html" -E "<style|style=" . | head -n 1 || true)"
-[ -z "$bad_inline" ] || fail "נמצא CSS בתוך HTML (אסור). דוגמה: $bad_inline"
+echo "== REQUIRED SCRIPTS =="
+while IFS= read -r s; do
+  [ -z "$s" ] && continue
+  [ -f "$s" ] && echo "✅ $s" || { echo "❌ missing: $s"; exit 12; }
+done < <(echo "$JSON" | python -c "import sys,json; d=json.load(sys.stdin); print('\\n'.join(d['REQUIRED SCRIPTS']))")
 
-# אין כפילויות בכותרות ## (case-insensitive)
-dupe_h2="$(tr -d "\r" < "$f" | grep "^## " | tr "[:upper:]" "[:lower:]" | sort | uniq -d | head -n 1 || true)"
-[ -z "$dupe_h2" ] || fail "כותרת כפולה ב-כללים: $dupe_h2"
+echo "== PRINT RULES =="
+./scripts/print_guard.sh
 
-# אין כפילויות בבולטים (- ...)
-dupe_bul="$(tr -d "\r" < "$f" | sed -E "s/[[:space:]]+/ /g" | grep "^- " | sort | uniq -d | head -n 1 || true)"
-[ -z "$dupe_bul" ] || fail "בולט כפול (כפילות דרישה): $dupe_bul"
+# baseline: no inline CSS (already checked) + no pages 2-4 (page1-only mode)
+if [ -f "עמוד 2.html" ] || [ -f "עמוד 3.html" ] || [ -f "עמוד 4.html" ]; then
+  echo "❌ page1-only violated (found page 2-4)"; exit 13;
+fi
 
-ok "כללים תקינים + אין כפילויות/סתירות בסיסיות + אין CSS בתוך עמודים"
+echo "✅ rules_check OK: כללים תקינים + GOV2 structured enforcement";

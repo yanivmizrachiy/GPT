@@ -133,7 +133,42 @@
 - בוצע בפועל: אומת/תוקן שהקריאה ל-scripts/prepush.sh קיימת פעם אחת ב-push.sh. תועד שהשגיאות else/fi היו שבירת הדבקה בטרמינל (לא תכנון).
 - המשך מתוכנן: להקשיח audit+snapshot (אם נרצה), ואז לשדרג את עמוד 1: גרף JSXGraph פרינט-סייפ + מיקרו-ריווחים לפי צילום PDF.
 
-### 2026-02-14 21:33
-- דרישה/שינוי: fix: enforce prepush reliably + document
-- בוצע בפועל: אומת/תוקן prepush ב-push.sh + עודכן כללים.md + נבנה rules.html
-- המשך מתוכנן: הבא: גרף JSXGraph פרינט-סייפ בעמוד 1 + כיוונון A4 לפי צילום PDF
+## REQUIRED FILES
+- עמוד 1.html
+- assets/style.css
+- assets/print.js
+- rules.html
+- RULES.md
+
+## REQUIRED SCRIPTS
+- scripts/push.sh
+- scripts/prepush.sh
+- scripts/rules_check.sh
+- scripts/build_rules.sh
+- scripts/parse_rules.py
+- scripts/print_guard.sh
+- scripts/dev_mode.sh
+- scripts/health.sh
+- scripts/get_pdf.sh
+
+## PRINT RULES
+- אין inline CSS בתוך HTML (style= / <style>)
+- חובה @media print בקבצי CSS
+- עמוד 1 חייב להכיל container להדפסה (.page או .sheet)
+- PDF הורדה מפנה ל-RAW כמקור אמת
+
+## GOVERNANCE
+- אין Push בלי רישום יומן היום
+- כל שינוי מתועד ביומן העבודה עם תאריך, מה בוצע ומה הלאה
+- סנכרון = מחיקת מיותר/כפילויות/סתירות
+- page1-only: אין עמודים 2-4
+
+### 2026-02-14 22:18
+- דרישה/שינוי: fix: remove inline CSS from index.html (print_guard pass)
+- בוצע בפועל: נוקה inline CSS מ-index.html: הוסר <style> ו-style=. rules_check עבר.
+- המשך מתוכנן: הבא: dev_mode + צילום PDF RAW לכיוונון מ״מ וגרף.
+
+### 2026-02-14 22:40
+- דרישה/שינוי: fix: index generator clean (no inline CSS) + unblock PRINT_GUARD
+- בוצע בפועל: תוקן scripts/rebuild_index.sh כך ש-index.html נבנה ללא <style> וללא style=. הושלמו מחלקות מינימליות ב-assets/style.css רק אם חסרו. PRINT_GUARD עובר.
+- המשך מתוכנן: הבא: להריץ dev_mode + לשלוח צילום מסך של Download/page-1.pdf לכיוונון מ״מ A4.

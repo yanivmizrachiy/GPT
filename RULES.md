@@ -128,3 +128,8 @@
 - דרישה/שינוי: fix: journal update (unicode-safe, no f-string crash)
 - בוצע בפועל: עודכן יומן בכללים.md בצורה חסינה ללא f-string. שיקוף מלא ל-RULES.md.
 - המשך מתוכנן: הבא: בדיקת PDF טיפוגרפית מדויקת לפי צילום מסך.
+
+### 2026-02-14 21:22
+- דרישה/שינוי: chore: add Termux health+pdf helpers
+- בוצע בפועל: נוספו scripts/health.sh + scripts/get_pdf.sh (newline-safe). נבדקו בפועל: health OK + הורדת PDF ל-Download הצליחה. קיצורי Widget עודכנו.
+- המשך מתוכנן: הבא: לקבע ביצועים—להוסיף weekly_update.sh (עדכון חבילות פעם בשבוע בלבד) + להוסיף health מהיר בלי רשת אם רוצים.

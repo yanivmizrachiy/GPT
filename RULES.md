@@ -152,6 +152,7 @@
 - scripts/health.sh
 - scripts/get_pdf.sh
 
+- scripts/qa_print.sh
 ## PRINT RULES
 - אין inline CSS בתוך HTML (style= / <style>)
 - חובה @media print בקבצי CSS
@@ -187,6 +188,6 @@
 - 5) הרחבה עתידית: רק אחרי שהעמוד הראשון מושלם ומאושר
 
 ### 2026-02-14 23:01
-- דרישה/שינוי: chore: add QA_PRINT one-tap (dev_mode+pdf+open) + widget + document in rules
-- בוצע בפועל: נוסף scripts/qa_print.sh + alias qa + קיצור 🖨️ QA_PRINT_GPT. עודכן יומן בכללים.md ושוקף ל-RULES.md.
-- המשך מתוכנן: הבא: להריץ qa ולשלוח צילום מסך של ה-PDF כדי לכוון מ״מ A4 עד מושלם.
+- דרישה/שינוי: chore: enforce qa_print in rules contract (required script)
+- בוצע בפועל: אומת scripts/qa_print.sh ונוסף לחוזה REQUIRED SCRIPTS בכללים.md (ושוקף ל-RULES.md). נבנה rules.html ו-rules_check עבר.
+- המשך מתוכנן: הבא: להריץ qa ולשלוח צילום מסך של Download/page-1.pdf לכיוונון מ״מ A4.

@@ -163,12 +163,7 @@
 - סנכרון = מחיקת מיותר/כפילויות/סתירות
 - page1-only: אין עמודים 2-4
 
-### 2026-02-14 22:18
-- דרישה/שינוי: fix: remove inline CSS from index.html (print_guard pass)
-- בוצע בפועל: נוקה inline CSS מ-index.html: הוסר <style> ו-style=. rules_check עבר.
-- המשך מתוכנן: הבא: dev_mode + צילום PDF RAW לכיוונון מ״מ וגרף.
-
-### 2026-02-14 22:40
-- דרישה/שינוי: fix: index generator clean (no inline CSS) + unblock PRINT_GUARD
-- בוצע בפועל: תוקן scripts/rebuild_index.sh כך ש-index.html נבנה ללא <style> וללא style=. הושלמו מחלקות מינימליות ב-assets/style.css רק אם חסרו. PRINT_GUARD עובר.
-- המשך מתוכנן: הבא: להריץ dev_mode + לשלוח צילום מסך של Download/page-1.pdf לכיוונון מ״מ A4.
+### 2026-02-14 22:45
+- דרישה/שינוי: polish: PRINT ENGINE PRO v1 (A4 mm + baseline rhythm) + document in rules
+- בוצע בפועל: הוסף PRINT_ENGINE_PRO_V1 ל-style.css: A4 במ״מ, baseline, שוליים, מניעת שבירות, print-safe. עודכן יומן בכללים.md ושיקוף ל-RULES.md ונבנה rules.html.
+- המשך מתוכנן: הבא: שלח צילום מסך/תמונה של Download/page-1.pdf → כיוונון מ״מ עד מושלם + גרף JSXGraph פרינט-סייפ.
